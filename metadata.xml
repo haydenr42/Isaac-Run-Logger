@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Isaac Run Logger</name>
+    <directory>isaacrunlogger</directory>
+    <id>3812241982</id>
+    <description>I've always found the standard &quot;Stats&quot; menu to be a bit lacking. The goal of this mod is to amend that, allowing you to track aggregated metrics across your runs, such as what items you pick up, what damages you, and how often you win.
+
+[h1]Purpose[/h1]
+
+Originally, I conceived this mod with the intention of gathering a dataset for the purpose of modeling practice (e.g. market basket analysis, logistic regression), which theoretically [i]can[/i] be done. However, I've since come to the unfortunate conclusion that, given the enormous pool of items, I'd need a fittingly enormous number of runs to sample.
+
+Without many, many runs, results may be misleading or overfit, and the feasibility of deeper analysis remains to be seen.
+
+As such, the mod has been repurposed to conveniently track your stats across runs, characters, and modes!
+
+[h1]Features[/h1]
+
+[list]
+[*] [b]Summary[/b] — Shows your total runs, win rate, average floor reached, average # of hits taken, and average # of hits taken per minute.
+[*] [b]Items[/b] — Track and sort each item's:
+[list]
+[*] Number of times picked up
+[*] Number of times seen
+[*] Overall encounter rate
+[*] Overall pick-up rate
+[*] Average floor found
+[*] Average floor reached
+[*] Win rate of runs with the item
+[*] Average hits per minute of runs with the item, after obtaining it
+[/list]
+[*] [b]Damage Sources[/b] — Track and sort each source of damage (enemies, projectiles, spikes, curse rooms, etc.) by the number of times it hits you.
+[*] [b]Hits by Floor[/b] — Track the average number of times you are hit on each floor.
+[*] [b]Transformations[/b] — Track each transformation's:
+[list]
+[*] Number of times obtained
+[*] Rate of obtaining
+[*] Average floor obtained
+[*] Win rate of runs with the transformation
+[*] Average hits per minute of runs with the transformation, after obtaining it
+[/list]
+[*] [b]Run Log[/b] — View your 50 most recent runs.
+[*] [b]Global Filtering[/b] — Filter statistics by character and mode.
+[*] [b]Search Filtering[/b] — Search for specific items and damage sources.
+[*] [b]Tunable Settings[/b] — Configure:
+[list]
+[*] Maximum number of stored runs
+[*] Maximum log size
+[*] Whether abandoned runs are logged
+[*] Minimum abandoned run length
+[/list]
+[/list]
+
+[h1]Commands[/h1]
+
+Runs will automatically start being logged once the mod is enabled.
+
+Additional commands can be used by opening the in-game console with [code]~[/code]
+
+[code]runlogger ui[/code]
+Opens the main stats window.
+
+[code]runlogger toggletestmode[/code]
+Toggles test mode [b]ON/OFF[/b].
+When test mode is enabled, runs will not be logged. This is mainly intended to avoid tainting your data with things such as The Forgotten unlock attempts.
+Test mode resets upon restarting the game.
+
+[code]runlogger status[/code]
+Reports the current status of test mode ([b]ON/OFF[/b]).
+
+[h1]Requirements[/h1]
+
+[b]This mod requires REPENTOGON.[/b]
+
+The Steam Workshop entry is [b]NOT sufficient[/b] for installing REPENTOGON, but it does provide guidance on how to properly install it.
+
+[h1]Compatibility[/h1]
+
+This mod should work fine with most other mods.
+
+Modded items should still be logged, as will modded characters, with the following caveats:
+
+[list]
+[*] Reordering mods may cause data to be misattributed to the wrong items.
+[*] Modded characters cannot currently be selected in character filtering.
+[/list]
+
+[b]Co-op is untested.[/b]
+
+Theoretically, hits and pickups from all players are recorded together, meaning results will be mixed between players.
+
+[h1]Additional Disclaimers[/h1]
+
+[b]Run Limit[/b]
+
+Logging is capped at [b]300 runs by default[/b]. Once this limit is reached, the oldest run will be discarded whenever a new entry is added.
+
+[b]Save Slots[/b]
+
+Runs are tracked per save slot, defaulting to the first slot.
+
+To view the stats from another save slot, simply load that slot and then run the [code]runlogger ui[/code] command.
+
+[b]What Does &quot;Seen&quot; Mean?[/b]
+
+&quot;Seen&quot; means that the item appeared on a pedestal in a room you entered.
+
+In rooms where you can only take one of several items, the ones you leave behind lower their pick-up rate.
+
+Under Curse of the Blind, pedestals still count as seen but are excluded from the pick-up rate.
+
+Items you start with, or obtain without a pedestal, count as picked up but not seen.
+
+[b]When Do Items Appear?[/b]
+
+Items appear in the stats once you've either seen or picked them up.
+
+Damage sources, floors, and transformations appear once they've occurred.
+
+[b]Damage Sources[/b]
+
+Whenever possible, hits from an enemy's projectiles, creep trails, and similar effects are attributed to that enemy's own entry.
+
+Self-inflicted damage will be labeled where possible.
+
+There may still be some unresolved names for certain damage sources.
+
+Intentional hits (Devil Beggar, Curse Room, etc.) are excluded from all hit calculations.
+
+[b]Abandoned Runs[/b]
+
+Runs that are abandoned (save and quit or restart) will still be logged, assuming:
+
+[list]
+[*] More than 3600 frames (~1 minute) have passed.
+[*] You are not in test mode.
+[/list]
+
+These runs count toward your total number of runs, but do not count toward your win rate.
+
+Continuing the run will log a new entry. This entry has the same underlying ID (run IDs are derived from the seed), but functions as a separate run and only contains data from that point onward when calculating aggregated statistics.
+
+This can slightly distort the results. In the end, it was too much of a hassle to try to recombine continued runs, and frankly, I almost never save and quit anyway.
+
+[b]My advice: Play to completion.[/b]
+
+[b]Greed &amp; Challenge Runs[/b]
+
+Greed, Greedier, and Challenge runs are excluded from all &quot;floor&quot; calculations, as their different structures would distort the results.
+
+However, Greed and Greedier runs can still inflate other metrics, such as item encounter rates.
+
+If this is undesirable, you can avoid it by filtering those modes out.
+
+[b]Resetting Your Data[/b]
+
+To reset your logged runs, delete the [code]saveX.dat[/code] file (X being the save slot number).
+
+The file should be located at:
+
+[code]/path/to/Isaac/data/isaacrunlogger[/code]
+
+You can also copy this file to create a backup of your data.
+
+Disabling the mod will preserve this save file, but will stop tracking until the mod is enabled again.
+
+[b]A note on results[/b]
+
+Keep in mind that these stats are [b]descriptive[/b].
+
+Longer runs naturally have more opportunities to encounter items, so an item's win rate and average floor reached are not necessarily causal.
+
+Hits per minute also depends on when you find an item, since later items are generally measured in more difficult rooms.
+
+To state the obvious, this mod cannot retroactively track your pre-existing runs.
+
+Created by [b]Hayden0515[/b]
+</description>
+    <version>1.3</version>
+    <visibility>public</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Player Characters"/>
+    <tag id="Floors"/>
+    <tag id="Enemies"/>
+    <tag id="Bosses"/>
+</metadata>

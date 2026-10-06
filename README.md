@@ -4,9 +4,13 @@ A stats tracker for *The Binding of Isaac: Repentance*. It logs every run and sh
 
 > Unofficial fan-made mod. It is not affiliated with or endorsed by the creators or publisher of *The Binding of Isaac*.
 
-**Steam Workshop:** [link]
+**Steam Workshop:** [(https://steamcommunity.com/sharedfiles/filedetails/?id=3812241982)]
 
-[screenshot: Items tab] [screenshot: Damage Sources tab] [screenshot: Hits by Floor tab]
+<img width="1142" height="704" alt="Screenshot 2026-10-05 220909" src="https://github.com/user-attachments/assets/b47de6f4-580d-4abc-8f6c-e078e8a334c5" />
+<img width="977" height="701" alt="Screenshot 2026-10-05 220920" src="https://github.com/user-attachments/assets/a0924b35-73c5-4b44-8af6-9b583a1bf258" />
+<img width="995" height="700" alt="Screenshot 2026-10-05 221000" src="https://github.com/user-attachments/assets/dd67f146-2330-4755-9e89-2435aa2b361d" />
+<img width="974" height="703" alt="Screenshot 2026-10-05 220935" src="https://github.com/user-attachments/assets/4bb8d5e0-9f82-46cd-a154-3ccf31e199d5" />
+<img width="981" height="704" alt="Screenshot 2026-10-05 220948" src="https://github.com/user-attachments/assets/10cac5f7-f2d3-45f0-a7a9-2a7f26c623a2" />
 
 ## Features
 

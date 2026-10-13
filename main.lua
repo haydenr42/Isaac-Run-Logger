@@ -52,7 +52,7 @@ local FLOOR_NAMES = {
     [10] = { [0] = "Sheol", [1] = "Cathedral" },
     [11] = { [0] = "Dark Room", [1] = "Chest" },
     [12] = { [0] = "Void" },
-    [13] = { [0] = "Home" },
+    [13] = { [0] = "Home", [1] = "Home(Beast)" },
 }
 
 local function floorLabel(stage, stageType)
@@ -89,7 +89,7 @@ local function runModeKey(run)
     return "normal"
 end
 
-local FRAMES_PER_MIN = 3600   -- the game runs at 60 frames per second
+local FRAMES_PER_MIN = 1800  -- the game runs at 60 frames per second
 local MIN_EXPOSURE_MIN = 2    -- hits/min is only shown with at least this much total exposure
 
 -- Intentional damage, ignore
